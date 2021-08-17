@@ -3,7 +3,7 @@ set -e
 
 : ${MODEL:=c18}
 : ${KEYMAP:=default}
-: ${FLASH:=yes}
+: ${FLASH:=true}
 
 KEYMAP_FILENAME="ap2-${MODEL}-${KEYMAP}.bin"
 SHINE_FILENAME="ap2-${MODEL}-shine.bin"
@@ -20,7 +20,7 @@ make ${MODEL^^}
 cp ~/qmk/.build/annepro2_c18_$KEYMAP.bin /build/$KEYMAP_FILENAME
 cp ~/shine/build/annepro2-shine-C18.bin /build/$SHINE_FILENAME
 
-if [ $FLASH == "yes" ]; then
+if [ $FLASH == "true" ]; then
 	echo "Flashing in 10 seconds. Put the keyboard into IAP mode!"
 	sleep 10
 	cd ~/tools/target/release/
