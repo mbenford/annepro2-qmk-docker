@@ -1,38 +1,43 @@
 # annepro2-qmk-docker
 
-Docker image for compiling and flashing OpenAnnePro firmwares
+Docker image for compiling and flashing OpenAnnePro firmwares. 
 
-# Requirements
+## Motivation
+
+Using a Docker image greatly simplifies the process of building and flashing custom firmwares since everything is included.
+There is no need to clone all necessary repositories and install build dependencies on your machine.
+
+## Requirements
 
 - Docker
 - Make
 
-# Basic Usage
+## Basic Usage
 
 1. Clone this repository:
 
-    git clone --depth=1 https://github.com/mbenford/annepro2-qmk-docker
+       git clone --depth=1 https://github.com/mbenford/annepro2-qmk-docker
 
 2. Build the docker image (this will take a few minutes to complete):
 
-		cd annepro2-qmk-docker
-		make image
+       cd annepro2-qmk-docker
+       make image
 
 2. Build and flash the firmwares (default keymap and Shine for model C18):
 
-		make flash
+       make flash
 	
 You can also just run `make` to build the files only. They will be placed in `./build` so you can flash them manually.
 
-# Advanced usage
+## Advanced usage
 
-## Using a different model
+### Using a different model
 
 Use the `MODEL` variable to set what model you want to build/flash:
 
     make flash MODEL=c15
 
-## Using a different keymap
+### Using a different keymap
 
 You can build a different keymap by using the `KEYMAP` variable:
 
@@ -46,12 +51,12 @@ can be used. You can also use your own keymaps as well by setting the `SRC_DIR` 
 `my-custom-keymap` must be a directory under `SRC_DIR/keymaps` containing your custom files - notably `keymap.c` and 
 `config.h`.
 
-## Using a custom Shine profile
+### Using a custom Shine profile
 
 You can provide your custom Shine files by using the `SRC_DIR` variable as well. All files must be located in 
 `SRC_DIR/shine`.
 
-## Building/flashing a specific module
+### Building/flashing a specific module
 
 You don't need to build and flash all modules (keymap and shine) all the time. Use the `MODULE` variable to specify
 what you want to build:
@@ -59,4 +64,3 @@ what you want to build:
     make flash MODULES=all    # all modules
     make flash MODULES=keymap # only keymap
     make flash MODULES=shine  # only shine
-
